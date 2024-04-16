@@ -4,14 +4,15 @@
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
+	"workspaceMount": "",
+	"runArgs": ["--volume=${localWorkspaceFolder}:/workspaces/${localWorkspaceFolderBasename}:Z"],
 	"remoteUser": "node",
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"NomicFoundation.hardhat-solidity",
-				"ms-azuretools.vscode-docker"
+				"NomicFoundation.hardhat-solidity"
 			]
 		}
 	},
-	"postCreateCommand": "npm install && alias hardhat='npx hardhat $@'"
+	"postCreateCommand": "npm install"
 }
