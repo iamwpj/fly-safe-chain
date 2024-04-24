@@ -1,4 +1,4 @@
-FROM node:18
+FROM node:20
 
 # Install basic development tools
 RUN apt update && apt install -y less man-db sudo iproute2
@@ -17,3 +17,4 @@ ENV DEVCONTAINER=true
 
 # Set default aliases
 RUN echo 'alias hardhat="npx hardhat $@"' >> /home/node/.bashrc
+RUN echo 'alias tsn="npx ts-node $@"' >> /home/node/.bashrc
