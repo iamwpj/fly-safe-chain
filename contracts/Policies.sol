@@ -5,24 +5,17 @@ contract Policies {
     // Create network events
     event PolicyEvent(string message, address owner);
 
-    //The policy status is a string with two possible values: “purchased” and “claimed”
-    enum Status {
-        pending,
-        purchased,
-        claimed
-    }
-
     struct Policy {
         string passenger_name;
         string flight_number;
         string flight_date;
         string departure_code;
         string destination_code;
-        Status policy_status;
+        string policy_status;
     }
 
     mapping(address => Policy) public allPolicies;
-    address[] public listPolicies;
+    // address[] public listPolicies;
 
     // Establish payment
 
@@ -39,7 +32,7 @@ contract Policies {
         string memory destination_code
     ) public payable costs(10e15) returns (bool success) {
         address passenger_address = msg.sender;
-        Status policy_status = Status.purchased;
+        string memory policy_status = "purchased";
 
         allPolicies[passenger_address].passenger_name = passenger_name;
         allPolicies[passenger_address].flight_number = flight_number;
@@ -55,33 +48,17 @@ contract Policies {
         return true;
     }
 
-    function getPolicy(
-        address passenger_address
-    )
-        public
-        view
-        returns (
-            string memory passenger_name,
-            string memory flight_number,
-            string memory flight_date,
-            string memory departure_code,
-            string memory destination_code,
-            Status policy_status
-        )
-    {
-        return (
-            allPolicies[passenger_address].passenger_name,
-            allPolicies[passenger_address].flight_number,
-            allPolicies[passenger_address].flight_date,
-            allPolicies[passenger_address].departure_code,
-            allPolicies[passenger_address].destination_code,
-            allPolicies[passenger_address].policy_status
-        );
+    function payout(address payable _to) public payable {
+        _to.transfer(1);
+    }
+
+    function getPolicy(address passenger_address) public view returns (Policy memory policy) {
+        policy = allPolicies[passenger_address];
     }
 
     function infoPolicy() public pure returns (string memory information) {
         string
-            memory message = "View the Fly Safe Chain Policies:\n\
+            memory info_message = "View the Fly Safe Chain Policies:\n\
             Premium: 0.01 E\n\
             Indemity: 0.02 E\n\n\
             Coverage Options include, but are not limited to (or by):\n\
@@ -89,6 +66,6 @@ contract Policies {
              - Unforseeable airspace interruptions\n\
              - Other things\n";
 
-        return message;
+        return info_message;
     }
 }

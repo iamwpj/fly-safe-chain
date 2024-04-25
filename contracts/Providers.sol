@@ -14,7 +14,7 @@ contract Providers {
         string flight_date;
         string departure_code;
         string destination_code;
-        Policies.Status policy_status;
+        string policy_status;
     }
 
     mapping (address => ProviderPolicy) public allPolicies;
@@ -28,7 +28,7 @@ contract Providers {
         string memory flight_date,
         string memory departure_code,
         string memory destination_code,
-        Policies.Status policy_status
+        string memory policy_status
     ) external returns (bool success) {
         address passenger_address = msg.sender;
   

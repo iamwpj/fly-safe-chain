@@ -26,11 +26,11 @@ async function main() {
     // it's simply statically listed.
 
     const load_method_abi = contract.methods.loadPolicy(
-        "Bubba Gump",
+        "Hector Salamanca",
         'SW332',
-        '03062024T231200',
-        'PDX',
-        'LAX'
+        '20230417T000000',
+        'PHX',
+        'MEX'
     ).encodeABI()
 
     const build_tx = {

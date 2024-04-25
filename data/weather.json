@@ -1,35 +1,23 @@
 {
-    "cities": {
-        "DEN": {
-            "date": "20230415000000",
-            "weather": "hail"
+    "dates": {
+        "20230415T000000": {
+            "DEN":"hail",
+            "AUS": "normal"
         },
-        "AUS": {
-            "date": "20230415000000",
-            "weather": "normal"
+        "20230416T000000": {
+            "IAH":"rainfall",
+            "BOS": "rainfall"
         },
-        "IAH": {
-            "date": "20230416000000",
-            "weather": "rainfall"
+        "20230417T000000" :{
+            "PHX": "flood"
         },
-        "BOS": {
-            "date": "20230416000000",
-            "weather": "rainfall"
+        "20230418T000000": {
+            "TPA": "hail",
+            "MIA": "flood"
         },
-        "PHX": {
-            "date": "20230417000000",
-            "weather": "flood"
-        },
-        "TPA": {
-            "date": "20230418000000",
-            "weather": "hail"
-        },
-        "MIA": {
-            "date": "20230418000000",
-            "weather": "flood"
-        },
-        "TUS": {
-            "date": "20230419000000"
+        "20230419T000000": {
+            "TUS": "normal"
         }
+        
     }
 }
