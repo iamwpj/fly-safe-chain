@@ -25,6 +25,9 @@ test.ts
 # Backups
 backup/
 
+# Receipts from the application
+receipts/*.json
+
 node_modules
 .env
 

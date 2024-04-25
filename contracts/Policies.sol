@@ -1,26 +1,17 @@
 //SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 
-import "hardhat/console.sol";
-
 contract Policies {
     // Create network events
-    event PolicyEvent(Policy policy);
+    event PolicyEvent(string message, address owner);
 
     //The policy status is a string with two possible values: “purchased” and “claimed”
     enum Status {
+        pending,
         purchased,
         claimed
     }
 
-    //The flight insurance policy should contain the following information:
-    // passenger’s name
-    // passenger’s Ethereum address
-    // flight number
-    // flight date: DDMMYYYYTHHMMSS
-    // departure city
-    // destination city
-    // policy status
     struct Policy {
         string passenger_name;
         string flight_number;
@@ -30,30 +21,53 @@ contract Policies {
         Status policy_status;
     }
 
-    mapping (address => Policy) public AllPolicies;
+    mapping (address => Policy) public allPolicies;
+    address [] public listPolicies;
+
+    // Establish payment
+
+    modifier costs(uint _amount){
+        require(msg.value >= _amount,
+        'Not enough Ether provided!');
+        _;
+    }
 
     function loadPolicy(
-        address passenger_address,
         string memory passenger_name,
         string memory flight_number,
         string memory flight_date,
         string memory departure_code,
-        string memory destination_code,
-        Status policy_status
-    ) public returns (bool success) {
-        AllPolicies[passenger_address].passenger_name = passenger_name;
-        AllPolicies[passenger_address].flight_number = flight_number;
-        AllPolicies[passenger_address].flight_date = flight_date;
-        AllPolicies[passenger_address].departure_code = departure_code;
-        AllPolicies[passenger_address].destination_code = destination_code;
-        AllPolicies[passenger_address].policy_status = policy_status;
+        string memory destination_code
+    ) public payable costs(10e15) returns (bool success) {
 
-        emit PolicyEvent(AllPolicies[passenger_address]);
+        address passenger_address = msg.sender;
+        Status policy_status = Status.purchased;
+  
+        allPolicies[passenger_address].passenger_name = passenger_name;
+        allPolicies[passenger_address].flight_number = flight_number;
+        allPolicies[passenger_address].flight_date = flight_date;
+        allPolicies[passenger_address].departure_code = departure_code;
+        allPolicies[passenger_address].destination_code = destination_code;
+        allPolicies[passenger_address].policy_status = policy_status;
 
+        emit PolicyEvent('New policy requested for a passenger', passenger_address);
         return true;
     }
 
     function getPolicy(address passenger_address) public view returns (Policy memory policy) {
-        return AllPolicies[passenger_address];
+        return allPolicies[passenger_address];
+    }
+
+    function infoPolicy() public pure returns (string memory information) {
+        string memory message = "View the Fly Safe Chain Policies:\n\
+            Premium: 0.01 E\n\
+            Indemity: 0.02 E\n\n\
+            Coverage Options include, but are not limited to (or by):\n\
+             - Weather\n\
+             - Unforseeable airspace interruptions\n\
+             - Other things\n";
+        
+        return message;
+
     }
 }
