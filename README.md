@@ -23,4 +23,8 @@ This is for a class and isn't fully featured.
 
 This is built on a Hardhat framework and configured to run in a Visual Studio Code devcontainer. You should be set by simply pulling the repository and running it in the devcontainer.
 
+* To compile contracts in the container: `hardhat compile`
+* To start a node in the container: `hardhat node` -- the scripts, etc. are configured to use this local node by the settings in [`hardhat.config.ts](./hardhat.config.ts). 
+* To run scripts: `hardhat run scripts/<script.ts>`
+
 [^1]: "instant" in the sense that the snails pace of a blockchain is faster than faxing paperwork. Sometimes.
