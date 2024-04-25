@@ -1,13 +1,26 @@
-# Sample Hardhat Project
+# Fly Safe Chain
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a Hardhat Ignition module that deploys that contract.
+_All the advantages of regular flying, but with less money in your wallet now!_
 
-Try running some of the following tasks:
+# Function
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat ignition deploy ./ignition/modules/Lock.js
-```
+Users can create a policy by utilizing a smart contract on a block chain. The policy data is stored on the chain and accessed by providers to approve and return claims. Contracts are structured with required passenger addresses, flights, etc. This system can be fully automated to provide instant[^1] policy purchase approvals.
+
+## Premiums and Indemnities
+
+* Regular premium: 0.01 E
+* Regular indemnity: 0.02 E
+
+# Background
+
+This is for a class and isn't fully featured.
+
+* There's no interface
+* Most data is hardcoded for demoing
+* Not all functions behave as expected
+
+## Running
+
+This is built on a Hardhat framework and configured to run in a Visual Studio Code devcontainer. You should be set by simply pulling the repository and running it in the devcontainer.
+
+[^1]: "instant" in the sense that the snails pace of a blockchain is faster than faxing paperwork. Sometimes.
