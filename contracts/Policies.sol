@@ -48,8 +48,15 @@ contract Policies {
         return true;
     }
 
-    function payout(address payable _to) public payable {
-        _to.transfer(1);
+    function getBalance() public view returns (uint256) {
+        return address(this).balance;
+    }
+
+    function payout(address payable _payer) public payable costs(10e15) {
+        bool sent = _payer.send(msg.value);
+        require(sent, "Failed to send Ether");
+        
+        allPolicies[msg.sender].policy_status = "claimed";
     }
 
     function getPolicy(address passenger_address) public view returns (Policy memory policy) {

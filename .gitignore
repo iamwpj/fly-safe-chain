@@ -21,6 +21,7 @@ ignition/deployments
 
 # Local tests
 test.ts
+test.txt
 
 # Backups
 backup/

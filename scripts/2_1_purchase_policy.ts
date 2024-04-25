@@ -1,24 +1,17 @@
 import { web3 } from "hardhat";
 import { globals } from "./globals";
 import { policyContract } from "./load_contract_Policies";
-import { providerContract } from "./load_contract_Providers";
-import { writeFileSync } from 'fs';
 import { purchase_accounts } from "../receipts/1199.json";
-
-
-async function writer(account: string, data: JSON) {
-    await writeFileSync(
-        `receipts/${account.substring(account.length - 4)}.json`,
-        JSON.stringify(data), { flag: "w+" }
-    );
-}
+import { writer } from "./load_writer";
 
 async function main() {
 
-    const account = globals.account_1;
-    const signature = globals.private_key_1;
+    const account = globals.account_2;
+    const signature = globals.private_key_2;
     const contract = await policyContract(account);
-    const provider_contract = await providerContract();
+
+    // Before buying anything, let's see this wallet's balance.
+    console.log(`Wallet balance: ${web3.utils.fromWei((await web3.eth.getBalance(account)),'ether')}`);
 
     // Normally this would all be taken as user input
     // Since we are more concerned about demo-ing contract
@@ -26,11 +19,11 @@ async function main() {
     // it's simply statically listed.
 
     const load_method_abi = contract.methods.loadPolicy(
-        "Hector Salamanca",
-        'SW332',
-        '20230417T000000',
-        'PHX',
-        'MEX'
+        "Angela Martin",
+        'JB111',
+        '20230416T000000',
+        'BOS',
+        'IAH'
     ).encodeABI()
 
     const build_tx = {
@@ -59,13 +52,17 @@ async function main() {
         })
         .then(function () {
             // Finally let's build an off-chain database for our providers
-            purchase_accounts.push(account)
-            var data: JSON = <JSON><unknown>{
-                "purchase_accounts": purchase_accounts
+            if (!purchase_accounts.includes(account)) {
+                purchase_accounts.push(account);
+                var data: JSON = <JSON><unknown>{
+                    "purchase_accounts": purchase_accounts
+                }
+                writer(globals.provider_account, data);
             }
-
-            writer(globals.provider_account,data)
         });
+
+        // Show updated balance:
+        console.log(`Wallet balance: ${web3.utils.fromWei((await web3.eth.getBalance(account)),'ether')}`);
 }
 
 main().catch((error) => {
