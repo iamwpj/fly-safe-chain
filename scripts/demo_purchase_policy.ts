@@ -37,7 +37,7 @@ async function main() {
         from: account,
         to: contract.options.address,
         data: load_method_abi,
-        value: web3.utils.toWei('.01', 'ether'),
+        value: web3.utils.toWei('0.01', 'ether'),
         gasPrice: globals.gas_price
     }
 
@@ -66,9 +66,6 @@ async function main() {
 
             writer(globals.provider_account,data)
         });
-
-
-
 }
 
 main().catch((error) => {

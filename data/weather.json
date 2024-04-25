@@ -1,0 +1,35 @@
+{
+    "cities": {
+        "DEN": {
+            "date": "20230415000000",
+            "weather": "hail"
+        },
+        "AUS": {
+            "date": "20230415000000",
+            "weather": "normal"
+        },
+        "IAH": {
+            "date": "20230416000000",
+            "weather": "rainfall"
+        },
+        "BOS": {
+            "date": "20230416000000",
+            "weather": "rainfall"
+        },
+        "PHX": {
+            "date": "20230417000000",
+            "weather": "flood"
+        },
+        "TPA": {
+            "date": "20230418000000",
+            "weather": "hail"
+        },
+        "MIA": {
+            "date": "20230418000000",
+            "weather": "flood"
+        },
+        "TUS": {
+            "date": "20230419000000"
+        }
+    }
+}
