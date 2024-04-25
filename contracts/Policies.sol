@@ -21,14 +21,13 @@ contract Policies {
         Status policy_status;
     }
 
-    mapping (address => Policy) public allPolicies;
-    address [] public listPolicies;
+    mapping(address => Policy) public allPolicies;
+    address[] public listPolicies;
 
     // Establish payment
 
-    modifier costs(uint _amount){
-        require(msg.value >= _amount,
-        'Not enough Ether provided!');
+    modifier costs(uint _amount) {
+        require(msg.value >= _amount, "Not enough Ether provided!");
         _;
     }
 
@@ -39,10 +38,9 @@ contract Policies {
         string memory departure_code,
         string memory destination_code
     ) public payable costs(10e15) returns (bool success) {
-
         address passenger_address = msg.sender;
         Status policy_status = Status.purchased;
-  
+
         allPolicies[passenger_address].passenger_name = passenger_name;
         allPolicies[passenger_address].flight_number = flight_number;
         allPolicies[passenger_address].flight_date = flight_date;
@@ -50,24 +48,47 @@ contract Policies {
         allPolicies[passenger_address].destination_code = destination_code;
         allPolicies[passenger_address].policy_status = policy_status;
 
-        emit PolicyEvent('New policy requested for a passenger', passenger_address);
+        emit PolicyEvent(
+            "New policy requested for a passenger",
+            passenger_address
+        );
         return true;
     }
 
-    function getPolicy(address passenger_address) public view returns (Policy memory policy) {
-        return allPolicies[passenger_address];
+    function getPolicy(
+        address passenger_address
+    )
+        public
+        view
+        returns (
+            string memory passenger_name,
+            string memory flight_number,
+            string memory flight_date,
+            string memory departure_code,
+            string memory destination_code,
+            Status policy_status
+        )
+    {
+        return (
+            allPolicies[passenger_address].passenger_name,
+            allPolicies[passenger_address].flight_number,
+            allPolicies[passenger_address].flight_date,
+            allPolicies[passenger_address].departure_code,
+            allPolicies[passenger_address].destination_code,
+            allPolicies[passenger_address].policy_status
+        );
     }
 
     function infoPolicy() public pure returns (string memory information) {
-        string memory message = "View the Fly Safe Chain Policies:\n\
+        string
+            memory message = "View the Fly Safe Chain Policies:\n\
             Premium: 0.01 E\n\
             Indemity: 0.02 E\n\n\
             Coverage Options include, but are not limited to (or by):\n\
              - Weather\n\
              - Unforseeable airspace interruptions\n\
              - Other things\n";
-        
-        return message;
 
+        return message;
     }
 }

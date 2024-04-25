@@ -1,7 +1,9 @@
 import { web3 } from "hardhat";
 import { globals } from "./globals";
 import { policyContract } from "./load_contract_Policies";
+import { providerContract } from "./load_contract_Providers";
 import { writeFileSync } from 'fs';
+import { purchase_accounts } from "../receipts/1199.json";
 
 
 async function writer(account: string, data: JSON) {
@@ -16,6 +18,7 @@ async function main() {
     const account = globals.account_1;
     const signature = globals.private_key_1;
     const contract = await policyContract(account);
+    const provider_contract = await providerContract();
 
     // Normally this would all be taken as user input
     // Since we are more concerned about demo-ing contract
@@ -23,11 +26,11 @@ async function main() {
     // it's simply statically listed.
 
     const load_method_abi = contract.methods.loadPolicy(
-        "Jane Goodall",
-        'AA755',
-        '05062024T075900',
-        'MSP',
-        'JFK'
+        "Bubba Gump",
+        'SW332',
+        '03062024T231200',
+        'PDX',
+        'LAX'
     ).encodeABI()
 
     const build_tx = {
@@ -35,7 +38,7 @@ async function main() {
         to: contract.options.address,
         data: load_method_abi,
         value: web3.utils.toWei('.01', 'ether'),
-        gasPrice: "875000000",
+        gasPrice: globals.gas_price
     }
 
     const gas_estimate = await web3.eth.estimateGas(build_tx);
@@ -45,15 +48,27 @@ async function main() {
 
     await web3.eth
         .sendSignedTransaction(signedTx.rawTransaction)
-        .once("receipt", function(receipt){ 
-            const data: JSON = <JSON><unknown>{ 
+        .once("receipt", function (receipt) {
+            var data: JSON = <JSON><unknown>{
                 "transaction_hash": receipt.transactionHash,
                 "block_hash": receipt.blockHash,
                 "block_number": receipt.blockNumber.toString(),
                 "contract_address": contract.options.address
             };
             writer(account, <JSON>data);
+        })
+        .then(function () {
+            // Finally let's build an off-chain database for our providers
+            purchase_accounts.push(account)
+            var data: JSON = <JSON><unknown>{
+                "purchase_accounts": purchase_accounts
+            }
+
+            writer(globals.provider_account,data)
         });
+
+
+
 }
 
 main().catch((error) => {

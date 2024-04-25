@@ -3,6 +3,10 @@ export const globals = {
     // This is deployed using Hardhat Ignition
     // see it using: hardhat ignition status chain-31337
     deployment_address: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+
+    // This is for the proviers ONLY
+    provider_account: '0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199',
+    provider_signature: '0xdf57089febbacf7ba0bc227dafbffa9fc08a93fdc68e1e42411a14efcf23656e',
     
     // Default gas price
     gas_price: "875000000",
@@ -28,24 +32,22 @@ export const globals = {
     private_key_8: '0xdbda1821b80551c9d65939329250298aa3472ba22feea921c0cf5d620ea67b97',
     account_9: '0xa0Ee7A142d267C1f36714E4a8F75612F20a79720',
     private_key_9: '0x2a871d0798f97d79848a013d4936a73bf4cc922c825d33c1cf7073dff6d409c6',
-    account_10: ' 0xBcd4042DE499D14e55001CcbB24a551F3b954096',
+    account_10: '0xBcd4042DE499D14e55001CcbB24a551F3b954096',
     private_key_10: '0xf214f2b2cd398c806f84e317254e0f0b801d0643303237d97a22a48e01628897',
-    account_11: ' 0x71bE63f3384f5fb98995898A86B02Fb2426c5788',
+    account_11: '0x71bE63f3384f5fb98995898A86B02Fb2426c5788',
     private_key_11: '0x701b615bbdfb9de65240bc28bd21bbc0d996645a3dd57e7b12bc2bdf6f192c82',
-    account_12: ' 0xFABB0ac9d68B0B445fB7357272Ff202C5651694a',
+    account_12: '0xFABB0ac9d68B0B445fB7357272Ff202C5651694a',
     private_key_12: '0xa267530f49f8280200edf313ee7af6b827f2a8bce2897751d06a843f644967b1',
-    account_13: ' 0x1CBd3b2770909D4e10f157cABC84C7264073C9Ec',
+    account_13: '0x1CBd3b2770909D4e10f157cABC84C7264073C9Ec',
     private_key_13: '0x47c99abed3324a2707c28affff1267e45918ec8c3f20b8aa892e8b065d2942dd',
-    account_14: ' 0xdF3e18d64BC6A983f673Ab319CCaE4f1a57C7097',
+    account_14: '0xdF3e18d64BC6A983f673Ab319CCaE4f1a57C7097',
     private_key_14: '0xc526ee95bf44d8fc405a158bb884d9d1238d99f0612e9f33d006bb0789009aaa',
-    account_15: ' 0xcd3B766CCDd6AE721141F452C550Ca635964ce71',
+    account_15: '0xcd3B766CCDd6AE721141F452C550Ca635964ce71',
     private_key_15: '0x8166f546bab6da521a8369cab06c5d2b9e46670292d85c875ee9ec20e84ffb61',
-    account_16: ' 0x2546BcD3c84621e976D8185a91A922aE77ECEc30',
+    account_16: '0x2546BcD3c84621e976D8185a91A922aE77ECEc30',
     private_key_16: '0xea6c44ac03bff858b476bba40716402b03e41b8e97e276d1baec7c37d42484a0',
-    account_17: ' 0xbDA5747bFD65F08deb54cb465eB87D40e51B197E',
+    account_17: '0xbDA5747bFD65F08deb54cb465eB87D40e51B197E',
     private_key_17: '0x689af8efa8c651a91ad287602527f3af2fe9f6501a7ac4b061667b5a93e037fd',
-    account_18: ' 0xdD2FD4581271e230360230F9337D5c0430Bf44C0',
+    account_18: '0xdD2FD4581271e230360230F9337D5c0430Bf44C0',
     private_key_18: '0xde9be858da4a475276426320d5e9262ecfc3ba460bfac56360bfa6c4c28b4ee0',
-    account_19: ' 0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199',
-    private_key_19: '0xdf57089febbacf7ba0bc227dafbffa9fc08a93fdc68e1e42411a14efcf23656e',
 }

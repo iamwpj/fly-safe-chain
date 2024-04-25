@@ -1,7 +1,11 @@
 import { web3 } from "hardhat";
-import artifacts from "../artifacts/contracts/Providers.sol/Provider.json";
+import artifacts from "../artifacts/contracts/Providers.sol/Providers.json";
+import { globals } from "./globals";
 
-export async function policyContract(deployer_address: any) {
+export async function providerContract() {
+    
+    // The provider is loaded with a default
+    const account = globals.provider_account;
 
     // Load the contract ABI.
     const contract = new web3.eth.Contract(artifacts.abi);
@@ -11,7 +15,7 @@ export async function policyContract(deployer_address: any) {
 
     // Send it
     const deployment = await deploy_tx.send({
-        from: deployer_address,
+        from: account,
         gas: (await deploy_tx.estimateGas()).toString()
     });
 
